@@ -1,4 +1,4 @@
-package com.paymentservice.demo.account.valueobjects;
+package com.paymentservice.demo.domain.valueobject;
 
 import com.paymentservice.demo.shared.ValueObject;
 import org.springframework.lang.NonNull;
