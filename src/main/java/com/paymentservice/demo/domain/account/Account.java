@@ -1,8 +1,8 @@
-package com.paymentservice.demo.domain;
+package com.paymentservice.demo.domain.account;
 
-import com.paymentservice.demo.domain.valueobject.AccountBalance;
-import com.paymentservice.demo.domain.valueobject.Money;
-import com.paymentservice.demo.shared.DomainObject;
+import com.paymentservice.demo.domain.account.valueobject.AccountBalance;
+import com.paymentservice.demo.domain.account.valueobject.Money;
+import com.paymentservice.demo.shared.markerinterface.DomainObject;
 
 import java.util.Objects;
 import java.util.UUID;

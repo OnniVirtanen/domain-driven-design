@@ -1,4 +1,6 @@
-package com.paymentservice.demo.domain;
+package com.paymentservice.demo.domain.account.repository;
+
+import com.paymentservice.demo.domain.account.Account;
 
 import java.util.Optional;
 import java.util.Set;

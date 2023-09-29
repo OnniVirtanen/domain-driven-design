@@ -1,7 +1,7 @@
 package com.paymentservice.demo.persistence;
 
-import com.paymentservice.demo.domain.Account;
-import com.paymentservice.demo.domain.AccountRepository;
+import com.paymentservice.demo.domain.account.Account;
+import com.paymentservice.demo.domain.account.repository.AccountRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

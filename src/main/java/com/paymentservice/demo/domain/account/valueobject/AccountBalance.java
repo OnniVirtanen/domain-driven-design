@@ -1,10 +1,12 @@
-package com.paymentservice.demo.domain.valueobject;
+package com.paymentservice.demo.domain.account.valueobject;
 
+
+import com.paymentservice.demo.shared.markerinterface.ValueObject;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public final class AccountBalance {
+public final class AccountBalance implements ValueObject {
 
     private final BigDecimal balance;
 

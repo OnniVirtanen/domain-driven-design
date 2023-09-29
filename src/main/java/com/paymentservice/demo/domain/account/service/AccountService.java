@@ -1,6 +1,6 @@
-package com.paymentservice.demo.domain.service;
+package com.paymentservice.demo.domain.account.service;
 
-import com.paymentservice.demo.domain.valueobject.Money;
+import com.paymentservice.demo.domain.account.valueobject.Money;
 import java.util.UUID;
 
 public interface AccountService {

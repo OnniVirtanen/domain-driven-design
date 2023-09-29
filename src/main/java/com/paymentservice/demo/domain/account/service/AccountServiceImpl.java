@@ -1,9 +1,9 @@
-package com.paymentservice.demo.domain.service;
+package com.paymentservice.demo.domain.account.service;
 
-import com.paymentservice.demo.domain.Account;
-import com.paymentservice.demo.domain.AccountRepository;
-import com.paymentservice.demo.domain.exception.NoAccountByGivenIdException;
-import com.paymentservice.demo.domain.valueobject.Money;
+import com.paymentservice.demo.domain.account.repository.AccountRepository;
+import com.paymentservice.demo.domain.account.Account;
+import com.paymentservice.demo.domain.account.exception.NoAccountByGivenIdException;
+import com.paymentservice.demo.domain.account.valueobject.Money;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

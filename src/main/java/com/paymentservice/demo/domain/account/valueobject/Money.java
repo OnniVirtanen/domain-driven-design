@@ -1,6 +1,6 @@
-package com.paymentservice.demo.domain.valueobject;
+package com.paymentservice.demo.domain.account.valueobject;
 
-import com.paymentservice.demo.shared.ValueObject;
+import com.paymentservice.demo.shared.markerinterface.ValueObject;
 import org.springframework.lang.NonNull;
 
 import java.math.BigDecimal;

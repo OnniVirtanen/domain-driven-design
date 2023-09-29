@@ -1,9 +1,10 @@
 package com.paymentservice.demo.domain.service;
 
-import com.paymentservice.demo.domain.Account;
-import com.paymentservice.demo.domain.AccountRepository;
-import com.paymentservice.demo.domain.valueobject.AccountBalance;
-import com.paymentservice.demo.domain.valueobject.Money;
+import com.paymentservice.demo.domain.account.Account;
+import com.paymentservice.demo.domain.account.repository.AccountRepository;
+import com.paymentservice.demo.domain.account.service.AccountServiceImpl;
+import com.paymentservice.demo.domain.account.valueobject.AccountBalance;
+import com.paymentservice.demo.domain.account.valueobject.Money;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;

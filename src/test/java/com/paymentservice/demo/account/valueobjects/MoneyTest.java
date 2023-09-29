@@ -1,6 +1,6 @@
 package com.paymentservice.demo.account.valueobjects;
 
-import com.paymentservice.demo.domain.valueobject.Money;
+import com.paymentservice.demo.domain.account.valueobject.Money;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

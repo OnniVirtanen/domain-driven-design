@@ -1,6 +1,6 @@
 package com.paymentservice.demo.controller;
 
-import com.paymentservice.demo.domain.service.AccountService;
+import com.paymentservice.demo.domain.account.service.AccountService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
