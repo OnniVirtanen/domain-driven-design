@@ -7,7 +7,6 @@ import com.paymentservice.demo.domain.valueobject.Money;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -32,15 +31,5 @@ public class AccountServiceImpl implements AccountService {
 
         accountRepository.save(sourceAccount);
         accountRepository.save(targetAccount);
-    }
-
-    @Override
-    public void addAccount(Account account) {
-        accountRepository.save(account);
-    }
-
-    @Override
-    public Set<Account> findAllAccounts() {
-        return accountRepository.findAllAccounts();
     }
 }

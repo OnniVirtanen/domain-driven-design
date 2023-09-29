@@ -30,7 +30,7 @@ public class InMemoryAccountRepository implements AccountRepository {
     }
 
     @Override
-    public Set<Account> findAllAccounts() {
+    public Set<Account> findAll() {
         return new HashSet<>(accounts.values());
     }
 }

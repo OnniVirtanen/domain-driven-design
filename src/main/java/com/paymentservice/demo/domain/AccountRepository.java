@@ -9,5 +9,5 @@ public interface AccountRepository {
 
     void save(Account account);
 
-    Set<Account> findAllAccounts();
+    Set<Account> findAll();
 }
