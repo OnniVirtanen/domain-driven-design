@@ -2,7 +2,7 @@ package com.paymentservice.demo.domain.service;
 
 import com.paymentservice.demo.domain.account.Account;
 import com.paymentservice.demo.domain.account.repository.AccountRepository;
-import com.paymentservice.demo.domain.account.service.AccountServiceImpl;
+import com.paymentservice.demo.domain.account.service.MoneyTransferServiceImpl;
 import com.paymentservice.demo.domain.account.valueobject.AccountBalance;
 import com.paymentservice.demo.domain.account.valueobject.Money;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 class AccountServiceImplTest {
 
     @InjectMocks
-    private AccountServiceImpl accountService;
+    private MoneyTransferServiceImpl accountService;
 
     @Mock
     private AccountRepository accountRepository;

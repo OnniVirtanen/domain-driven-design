@@ -1,35 +1,50 @@
 package com.paymentservice.demo.domain.account.service;
 
-import com.paymentservice.demo.domain.account.repository.AccountRepository;
-import com.paymentservice.demo.domain.account.Account;
-import com.paymentservice.demo.domain.account.exception.NoAccountByGivenIdException;
-import com.paymentservice.demo.domain.account.valueobject.Money;
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
-@Service
+import com.paymentservice.demo.domain.account.Account;
+import com.paymentservice.demo.domain.account.AccountDTO;
+import com.paymentservice.demo.domain.account.AccountHistory;
+import com.paymentservice.demo.domain.account.exception.NoAccountByGivenIdException;
+import com.paymentservice.demo.domain.account.repository.AccountRepository;
+import com.paymentservice.demo.domain.account.valueobject.AccountBalance;
+
 public class AccountServiceImpl implements AccountService {
+	
+	private final AccountRepository accountRepository;
 
-    private final AccountRepository accountRepository;
+	public AccountServiceImpl(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
+	}
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
+	@Override
+	public AccountDTO getAccount(UUID accountId) {
+		Account account = accountRepository.findById(accountId).orElseThrow(NoAccountByGivenIdException::new);
+		return new AccountDTO(account);
+	}
 
-    @Override
-    @Transactional
-    public void transferMoney(UUID sourceAccountId, UUID targetAccountId, Money amount) {
-        Account sourceAccount = accountRepository.findById(sourceAccountId)
-                .orElseThrow(NoAccountByGivenIdException::new);
-        Account targetAccount = accountRepository.findById(targetAccountId)
-                .orElseThrow(NoAccountByGivenIdException::new);
+	@Override
+	public AccountBalance getBalance(UUID accountId) {
+		Account account = accountRepository.findById(accountId).orElseThrow(NoAccountByGivenIdException::new);
+		return account.getBalance();
+	}
 
-        Money debitedAmount = sourceAccount.debit(amount);
-        targetAccount.credit(debitedAmount);
+	@Override
+	public AccountHistory getHistory(UUID accountId) {
+		return accountRepository.getHistory(accountId);
+	}
 
-        accountRepository.save(sourceAccount);
-        accountRepository.save(targetAccount);
-    }
+	@Override
+	public AccountDTO createAccount(AccountDTO accountDTO) {
+		Account account = accountRepository.save(new Account(accountDTO));
+		return new AccountDTO(account);
+	}
+
+	@Override
+	public void freezeAccount(UUID accountId) {
+		Account account = accountRepository.findById(accountId).orElseThrow(NoAccountByGivenIdException::new);
+		account.freeze();
+		accountRepository.update(account);
+	}
+	
 }
