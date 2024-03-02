@@ -24,7 +24,7 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
     }
 
     @Override
-    public void transferMoney(long fromAccountId, long toAccountId, Money amount) {
+    public void transferMoney(long fromAccountId, long toAccountId, Money amount, String description) {
         Account fromAccount = accountRepository.findById(fromAccountId).orElseThrow(NoEntityFoundException::new);
         Account toAccount = accountRepository.findById(toAccountId).orElseThrow(NoEntityFoundException::new);
         checkPrerequisites(fromAccount, toAccount, amount);
@@ -35,7 +35,7 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
 
-        MoneyTransaction transaction = new MoneyTransaction(fromAccount, toAccount, amount);
+        MoneyTransaction transaction = new MoneyTransaction(fromAccount, toAccount, amount, description);
         transactionRepository.save(transaction);
     }
 

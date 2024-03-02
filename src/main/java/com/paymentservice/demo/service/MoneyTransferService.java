@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface MoneyTransferService {
 
     @Transactional(readOnly = false)
-    void transferMoney(long fromAccountId, long toAccountId, Money amount);
+    void transferMoney(long fromAccountId, long toAccountId, Money amount, String description);
 
 }

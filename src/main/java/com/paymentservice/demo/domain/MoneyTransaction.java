@@ -36,15 +36,17 @@ public class MoneyTransaction extends BaseEntity implements Serializable {
     @Embedded
     @AttributeOverride(name="value", column=@Column(name="date"))
     private ReadableDate date;
+    private String description;
 
     public MoneyTransaction() {
 
     }
 
-    public MoneyTransaction(Account sourceAccount, Account destinationAccount, Money amount) {
+    public MoneyTransaction(Account sourceAccount, Account destinationAccount, Money amount, String description) {
         this.sourceAccount = sourceAccount;
         this.destinationAccount = destinationAccount;
         this.amount = amount;
+        this.description = description;
         this.date = new ReadableDate();
     }
 
@@ -86,6 +88,14 @@ public class MoneyTransaction extends BaseEntity implements Serializable {
 
     public void setDate(ReadableDate date) {
         this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

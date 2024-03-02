@@ -20,7 +20,8 @@ public class MoneyTransferWebServiceImpl implements MoneyTransferWebService {
     @PostMapping()
     @Override
     public void transferMoney(@RequestBody TransferMoneyCommand command) {
-        moneyTransferService.transferMoney(command.fromAccountId(), command.toAccountId(), command.amount());
+        moneyTransferService.transferMoney(command.fromAccountId(),
+                command.toAccountId(), command.amount(), command.description());
     }
 
 }
