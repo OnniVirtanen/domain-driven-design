@@ -2,18 +2,16 @@ package com.paymentservice.demo.api;
 
 import com.paymentservice.demo.domain.Account;
 
-import java.math.BigDecimal;
-
 public class AccountDTO {
 
     private final long accountId;
-    private final BigDecimal balance;
+    private final String balance;
     private final boolean frozen;
     private final long accountHolderId;
 
     public AccountDTO(Account account) {
         this.accountId = account.getAccountId();
-        this.balance = account.getBalance();
+        this.balance = account.getBalance().toString();
         this.frozen = account.isFrozen();
         this.accountHolderId = account.getAccountHolder().getPersonId();
     }
@@ -22,7 +20,7 @@ public class AccountDTO {
         return accountId;
     }
 
-    public BigDecimal getBalance() {
+    public String getBalance() {
         return balance;
     }
 

@@ -1,6 +1,10 @@
 package com.paymentservice.demo.domain;
 
+import com.paymentservice.demo.domain.valueobject.Money;
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class Account extends BaseEntity implements Serializable {
@@ -18,7 +22,9 @@ public class Account extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long accountId;
-    private BigDecimal balance;
+    @Embedded
+    @AttributeOverride(name="value", column=@Column(name="balance"))
+    private Money balance;
     private boolean frozen;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "account_holder_id", referencedColumnName = "personId")
@@ -34,11 +40,11 @@ public class Account extends BaseEntity implements Serializable {
         this.accountId = accountId;
     }
 
-    public BigDecimal getBalance() {
+    public Money getBalance() {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(Money balance) {
         this.balance = balance;
     }
 
@@ -56,6 +62,19 @@ public class Account extends BaseEntity implements Serializable {
 
     public void setAccountHolder(Person accountHolder) {
         this.accountHolder = accountHolder;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return accountId == account.accountId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId);
     }
 
 }

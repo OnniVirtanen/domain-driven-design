@@ -2,9 +2,11 @@ package com.paymentservice.demo.testdata;
 
 import com.paymentservice.demo.domain.Account;
 import com.paymentservice.demo.domain.Person;
+import com.paymentservice.demo.domain.valueobject.FullName;
+import com.paymentservice.demo.domain.valueobject.Money;
+import com.paymentservice.demo.domain.valueobject.ReadableDate;
 
 import java.math.BigDecimal;
-import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -14,7 +16,7 @@ public class TestDataGenerator {
     public static Account createRandomAccount() {
         Person person = new Person();
 
-        person.setName(generateRandomName());
+        person.setName(new FullName(generateRandomName(), generateRandomName(), new String[]{generateRandomName()}));
 
         // Define the date range
         LocalDate startDate = LocalDate.of(2000, 1, 1); // Start date
@@ -23,12 +25,12 @@ public class TestDataGenerator {
         // Generate a random date within the range
         String randomDate = generateRandomDate(startDate, endDate);
 
-        person.setDateOfBirth(randomDate);
+        person.setDateOfBirth(new ReadableDate(randomDate));
 
         Random random = new Random();
         Account account = new Account();
-        account.setFrozen(random.nextDouble() < 0.98);
-        account.setBalance(new BigDecimal(random.nextLong()));
+        account.setFrozen(random.nextDouble() > 0.98);
+        account.setBalance(new Money(new BigDecimal(random.nextLong())));
         account.setAccountHolder(person);
 
         return account;
