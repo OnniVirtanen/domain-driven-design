@@ -43,4 +43,16 @@ public class Money {
         return Objects.hash(value);
     }
 
+    public Money subtract(Money amount) {
+        return new Money(this.value.subtract(amount.value));
+    }
+
+    public Money add(Money amount) {
+        return new Money(this.value.add(amount.value));
+    }
+
+    public int compareTo(Money money) {
+        return this.value.compareTo(money.value);
+    }
+
 }

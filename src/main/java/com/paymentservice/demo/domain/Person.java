@@ -1,6 +1,7 @@
 package com.paymentservice.demo.domain;
 
 import com.paymentservice.demo.domain.valueobject.Address;
+import com.paymentservice.demo.domain.valueobject.Age;
 import com.paymentservice.demo.domain.valueobject.FullName;
 import com.paymentservice.demo.domain.valueobject.PhoneNumber;
 import com.paymentservice.demo.domain.valueobject.ReadableDate;
@@ -39,6 +40,9 @@ public class Person extends BaseEntity implements Serializable {
     private PhoneNumber phoneNumber;
     @Embedded
     private Address address;
+    private boolean underSanctions;
+    @Embedded
+    private Age age;
 
     public Person() {}
 
@@ -96,6 +100,22 @@ public class Person extends BaseEntity implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isUnderSanctions() {
+        return underSanctions;
+    }
+
+    public void setUnderSanctions(boolean underSanctions) {
+        this.underSanctions = underSanctions;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
+    public void setAge(Age age) {
+        this.age = age;
     }
 
     @Override

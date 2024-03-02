@@ -18,7 +18,9 @@ public class ReadableDate {
         this.value = value;
     }
 
-    protected ReadableDate() {}
+    public ReadableDate() {
+        this(LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy")));
+    }
 
     public String getValue() {
         return value;

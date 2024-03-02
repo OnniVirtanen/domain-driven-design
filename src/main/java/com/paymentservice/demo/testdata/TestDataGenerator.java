@@ -2,6 +2,7 @@ package com.paymentservice.demo.testdata;
 
 import com.paymentservice.demo.domain.Account;
 import com.paymentservice.demo.domain.Person;
+import com.paymentservice.demo.domain.valueobject.Age;
 import com.paymentservice.demo.domain.valueobject.FullName;
 import com.paymentservice.demo.domain.valueobject.Money;
 import com.paymentservice.demo.domain.valueobject.ReadableDate;
@@ -16,7 +17,8 @@ public class TestDataGenerator {
     public static Account createRandomAccount() {
         Person person = new Person();
 
-        person.setName(new FullName(generateRandomName(), generateRandomName(), new String[]{generateRandomName()}));
+        person.setName(new FullName(generateRandomName(), generateRandomName()));
+        person.setAge(new Age((short) (new Random().nextInt(100) + 1)));
 
         // Define the date range
         LocalDate startDate = LocalDate.of(2000, 1, 1); // Start date

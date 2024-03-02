@@ -77,4 +77,12 @@ public class Account extends BaseEntity implements Serializable {
         return Objects.hash(accountId);
     }
 
+    public void withdraw(Money amount) {
+        this.balance = this.balance.subtract(amount);
+    }
+
+    public void deposit(Money amount) {
+        this.balance = this.balance.add(amount);
+    }
+
 }
