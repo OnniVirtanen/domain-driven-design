@@ -1,60 +1,61 @@
 package com.paymentservice.demo.domain;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
-import com.paymentservice.demo.valueobject.Money;
-import jakarta.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ACCOUNT")
-public class Account extends BaseEntity {
+public class Account extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long accountId;
+    private BigDecimal balance;
+    private boolean frozen;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "account_holder_id", referencedColumnName = "personId")
+    private Person accountHolder;
 
-    @Embedded
-    @Column(name = "balance")
-    private Money balance;
+    public Account() {}
 
-    @Column(name = "frozen")
-    private Boolean frozen;
-
-    public Account() {
-
+    public long getAccountId() {
+        return accountId;
     }
 
-    public Account(Long id, Money balance, Boolean frozen) {
-        this.id = id;
-        this.balance = balance;
-        this.frozen = frozen;
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
 
-    public Account(Long id) {
-        this.id = id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Money getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Money balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
-    public Boolean getFrozen() {
+    public boolean isFrozen() {
         return frozen;
     }
 
-    public void setFrozen(Boolean frozen) {
+    public void setFrozen(boolean frozen) {
         this.frozen = frozen;
+    }
+
+    public Person getAccountHolder() {
+        return accountHolder;
+    }
+
+    public void setAccountHolder(Person accountHolder) {
+        this.accountHolder = accountHolder;
     }
 
 }

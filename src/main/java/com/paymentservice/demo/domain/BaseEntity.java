@@ -1,19 +1,18 @@
 package com.paymentservice.demo.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class BaseEntity {
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    public Date createdAt;
+    public Date updatedAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    public BaseEntity() {}
 
     public Date getCreatedAt() {
         return createdAt;
@@ -32,14 +31,14 @@ public abstract class BaseEntity {
     }
 
     @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+    public void prePersist() {
+        createdAt = new Date();
+        updatedAt = new Date();
     }
 
     @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
+    public void preUpdate() {
+        updatedAt = new Date();
     }
 
 }
