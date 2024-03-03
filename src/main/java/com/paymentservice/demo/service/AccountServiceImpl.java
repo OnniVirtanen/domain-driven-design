@@ -2,6 +2,8 @@ package com.paymentservice.demo.service;
 
 import com.paymentservice.demo.domain.Account;
 import com.paymentservice.demo.repository.AccountRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +23,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public Page<Account> getAccounts(Pageable pageable) {
+        return accountRepository.findAll(pageable);
     }
 
 }

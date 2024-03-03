@@ -32,10 +32,26 @@ public class TestDataGenerator {
         Random random = new Random();
         Account account = new Account();
         account.setFrozen(random.nextDouble() > 0.98);
-        account.setBalance(new Money(new BigDecimal(random.nextLong())));
+        account.setBalance(generateRandomMoney());
         account.setAccountHolder(person);
 
         return account;
+    }
+
+    private static Money generateRandomMoney() {
+        Random rand = new Random();
+        long randomAmount = 0;
+
+        // Probability distribution: higher probability for values in the range of a couple of thousand
+        int probabilityThreshold = rand.nextInt(100); // Adjust this threshold as needed
+        if (probabilityThreshold < 60) { // 60% probability for values in the couple thousand range
+            randomAmount = (long) (rand.nextInt(2000) + 1000); // Range: 1000 - 2999
+        } else if (probabilityThreshold < 90) { // 30% probability for values in the range of a couple hundred
+            randomAmount = (long) (rand.nextInt(200) + 100); // Range: 100 - 299
+        } else { // 10% probability for other values within the range 0 - 5 million
+            randomAmount = (long) (rand.nextDouble() * 5000000); // Range: 0 - 5 million
+        }
+        return new Money(BigDecimal.valueOf(randomAmount));
     }
 
     private static String generateRandomDate(LocalDate start, LocalDate end) {

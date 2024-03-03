@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/transfer")
-public class MoneyTransferWebServiceImpl implements MoneyTransferWebService {
+public class MoneyTransferRestServiceImpl implements MoneyTransferRestService {
 
     private final MoneyTransferService moneyTransferService;
 
-    public MoneyTransferWebServiceImpl(MoneyTransferService moneyTransferService) {
+    public MoneyTransferRestServiceImpl(MoneyTransferService moneyTransferService) {
         this.moneyTransferService = moneyTransferService;
     }
 
-    @PostMapping()
+    @PostMapping
     @Override
     public void transferMoney(@RequestBody TransferMoneyCommand command) {
         moneyTransferService.transferMoney(command.fromAccountId(),

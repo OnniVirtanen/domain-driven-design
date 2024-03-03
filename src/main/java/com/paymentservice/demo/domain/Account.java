@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class Account extends BaseEntity implements Serializable {
     @AttributeOverride(name="value", column=@Column(name="balance"))
     private Money balance;
     private boolean frozen;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "account_holder_id", referencedColumnName = "personId")
     private Person accountHolder;
 
