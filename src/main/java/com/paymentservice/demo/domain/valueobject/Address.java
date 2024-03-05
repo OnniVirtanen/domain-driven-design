@@ -1,18 +1,15 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.util.Objects;
 
-@Embeddable
-public class Address {
+public final class Address extends ValueObject {
 
-    private String street;
-    private String city;
-    private String postalCode;
-    private String country;
-
-    protected Address() {}
+    private final String street;
+    private final String city;
+    private final String postalCode;
+    private final String country;
 
     public Address(String street, String city, String postalCode, String country) {
         this.street = street;

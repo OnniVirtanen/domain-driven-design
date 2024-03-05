@@ -1,19 +1,16 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.util.Objects;
 
-@Embeddable
-public class PhoneNumber {
+public final class PhoneNumber extends ValueObject {
 
-    private String value;
+    private final String value;
 
     public PhoneNumber(String value) {
         this.value = value;
     }
-
-    protected PhoneNumber() {}
 
     @Override
     public boolean equals(Object o) {

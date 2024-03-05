@@ -1,15 +1,12 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.util.Objects;
 
-@Embeddable
-public class Age {
+public final class Age extends ValueObject {
 
-    private short age;
-
-    protected Age() {}
+    private final short age;
 
     public Age(short age) {
         if (!isValidAge(age)) {

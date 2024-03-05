@@ -1,22 +1,18 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
-import java.util.Arrays;
 import java.util.Objects;
 
-@Embeddable
-public class FullName {
+public final class FullName extends ValueObject {
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     public FullName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    protected FullName() {}
 
     public String getFirstName() {
         return firstName;

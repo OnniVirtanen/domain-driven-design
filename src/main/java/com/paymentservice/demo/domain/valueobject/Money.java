@@ -1,21 +1,18 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-@Embeddable
-public class Money {
+public final class Money extends ValueObject {
 
-    private BigDecimal value;
+    private final BigDecimal value;
 
     public Money(BigDecimal value) {
-        this.value = value.setScale(2, RoundingMode.HALF_EVEN);
+        this.value = value.setScale(2, RoundingMode.HALF_UP);
     }
-
-    protected Money() {}
 
     public Money(String value) {
         this(new BigDecimal(value));
@@ -27,7 +24,7 @@ public class Money {
 
     @Override
     public String toString() {
-        return value.setScale(2, RoundingMode.HALF_EVEN).toString();
+        return value.setScale(2, RoundingMode.HALF_UP).toString();
     }
 
     @Override

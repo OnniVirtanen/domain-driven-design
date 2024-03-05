@@ -1,36 +1,26 @@
 package com.paymentservice.demo.domain;
 
+import com.paymentservice.demo.domain.base.Aggregate;
 import com.paymentservice.demo.domain.valueobject.Money;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-public class Account extends BaseEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Account extends Aggregate {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long accountId;
-    @Embedded
-    @AttributeOverride(name="value", column=@Column(name="balance"))
     private Money balance;
     private boolean frozen;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "account_holder_id", referencedColumnName = "personId")
     private Person accountHolder;
 
     public Account() {}
+
+    public void withdraw(Money amount) {
+        this.balance = balance.subtract(amount);
+    }
+
+    public void deposit(Money amount) {
+        balance = balance.add(amount);
+    }
 
     public long getAccountId() {
         return accountId;
@@ -75,14 +65,6 @@ public class Account extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(accountId);
-    }
-
-    public void withdraw(Money amount) {
-        this.balance = this.balance.subtract(amount);
-    }
-
-    public void deposit(Money amount) {
-        this.balance = this.balance.add(amount);
     }
 
 }

@@ -1,15 +1,14 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-@Embeddable
-public class ReadableDate {
+public final class ReadableDate extends ValueObject {
 
-    private String value;
+    private final String value;
 
     public ReadableDate(String value) {
         if (!isValidDateFormat(value)) {

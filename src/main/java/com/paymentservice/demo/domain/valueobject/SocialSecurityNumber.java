@@ -1,19 +1,16 @@
 package com.paymentservice.demo.domain.valueobject;
 
-import jakarta.persistence.Embeddable;
+import com.paymentservice.demo.domain.base.ValueObject;
 
 import java.util.Objects;
 
-@Embeddable
-public class SocialSecurityNumber {
+public final class SocialSecurityNumber extends ValueObject {
 
-    private String value;
+    private final String value;
 
     public SocialSecurityNumber(String value) {
         this.value = value;
     }
-
-    protected SocialSecurityNumber() {}
 
     public String getValue() {
         return value;

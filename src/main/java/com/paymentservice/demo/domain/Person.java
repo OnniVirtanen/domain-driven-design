@@ -1,47 +1,25 @@
 package com.paymentservice.demo.domain;
 
+import com.paymentservice.demo.domain.base.Entity;
 import com.paymentservice.demo.domain.valueobject.Address;
 import com.paymentservice.demo.domain.valueobject.Age;
 import com.paymentservice.demo.domain.valueobject.FullName;
 import com.paymentservice.demo.domain.valueobject.PhoneNumber;
 import com.paymentservice.demo.domain.valueobject.ReadableDate;
 import com.paymentservice.demo.domain.valueobject.SocialSecurityNumber;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-public class Person extends BaseEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Person extends Entity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long personId;
-    @Embedded
     private FullName name;
-    @Embedded
-    @AttributeOverride(name="value", column=@Column(name="date_of_birth"))
     private ReadableDate dateOfBirth;
-    @OneToOne(mappedBy = "accountHolder")
     private Account account;
-    @Embedded
-    @AttributeOverride(name="value", column=@Column(name="social_security_number"))
     private SocialSecurityNumber ssn;
-    @Embedded
-    @AttributeOverride(name="value", column=@Column(name="phone_number"))
     private PhoneNumber phoneNumber;
-    @Embedded
     private Address address;
     private boolean underSanctions;
-    @Embedded
     private Age age;
 
     public Person() {}
