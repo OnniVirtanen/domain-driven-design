@@ -12,7 +12,12 @@ public class Account extends Aggregate {
     private boolean frozen;
     private Person accountHolder;
 
-    public Account() {}
+    public Account(long accountId, Money balance, boolean frozen, Person accountHolder) {
+        this.accountId = accountId;
+        this.balance = balance;
+        this.frozen = frozen;
+        this.accountHolder = accountHolder;
+    }
 
     public void withdraw(Money amount) {
         this.balance = balance.subtract(amount);
@@ -26,32 +31,16 @@ public class Account extends Aggregate {
         return accountId;
     }
 
-    public void setAccountId(long accountId) {
-        this.accountId = accountId;
-    }
-
     public Money getBalance() {
         return balance;
-    }
-
-    public void setBalance(Money balance) {
-        this.balance = balance;
     }
 
     public boolean isFrozen() {
         return frozen;
     }
 
-    public void setFrozen(boolean frozen) {
-        this.frozen = frozen;
-    }
-
     public Person getAccountHolder() {
         return accountHolder;
-    }
-
-    public void setAccountHolder(Person accountHolder) {
-        this.accountHolder = accountHolder;
     }
 
     @Override

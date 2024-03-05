@@ -22,78 +22,53 @@ public class Person extends Entity {
     private boolean underSanctions;
     private Age age;
 
-    public Person() {}
+    public Person(long personId, FullName name, ReadableDate dateOfBirth, Account account, SocialSecurityNumber ssn,
+                  PhoneNumber phoneNumber, Address address, boolean underSanctions, Age age) {
+        this.personId = personId;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.account = account;
+        this.ssn = ssn;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.underSanctions = underSanctions;
+        this.age = age;
+    }
 
     public long getPersonId() {
         return personId;
-    }
-
-    public void setPersonId(long personId) {
-        this.personId = personId;
     }
 
     public FullName getName() {
         return name;
     }
 
-    public void setName(FullName name) {
-        this.name = name;
-    }
-
     public ReadableDate getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public void setDateOfBirth(ReadableDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public Account getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
     public SocialSecurityNumber getSsn() {
         return ssn;
-    }
-
-    public void setSsn(SocialSecurityNumber ssn) {
-        this.ssn = ssn;
     }
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(PhoneNumber phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public Address getAddress() {
         return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public boolean isUnderSanctions() {
         return underSanctions;
     }
 
-    public void setUnderSanctions(boolean underSanctions) {
-        this.underSanctions = underSanctions;
-    }
-
     public Age getAge() {
         return age;
-    }
-
-    public void setAge(Age age) {
-        this.age = age;
     }
 
     @Override
